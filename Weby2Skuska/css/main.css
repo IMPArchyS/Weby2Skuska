@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'Mooli-Regular';
+    src: url(../fonts/Mooli-Regular.ttf);
+}
+
+body {
+    background-color: #012622;
+    /* Replace #FF0000 with your desired color */
+    font-family: 'Mooli-Regular', sans-serif;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Stack the content vertically */
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: white;
+}
+
+
+header {
+    padding: 1rem;
+    background-color: #232D3F;
+    overflow: hidden;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #232D3F;
+    color: #dddddd;
+    text-align: center;
+    margin-top: auto;
+}
+
+select {
+    height: 2rem;
+    width: 10rem;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    background-color: #dddddd;
+    color: #012622 !important;
+    margin: .5rem;
+}
+
+textarea {
+    height: 5rem !important;
+    width: 96% !important;
+}
+
+label, p {
+    color: #dddddd;
+    font-size: 1.2rem;
+    margin: .5rem .5rem 0.2rem 0.2rem;
+}
+
+input {
+    height: 2.5rem;
+    width: 15rem;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    background-color: #dddddd;
+    color: #012622 !important;
+    margin: .1rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+}
+

@@ -1,0 +1,295 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "WEBTE2Zadanie2 API",
+        "version": "1.0",
+        "description": "API pre rozvrh a získavanie tém z AISu"
+    },
+    "servers": [
+        {
+            "url": "https://node46.webte.fei.stuba.sk:643/api/api.php"
+        }
+    ],
+    "paths": {
+        "/lectures": {
+            "get": {
+                "tags": [
+                    "Lectures"
+                ],
+                "summary": "Get all lectures",
+                "responses": {
+                    "200": {
+                        "description": "A list of lectures",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Lecture"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No lectures found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Lectures"
+                ],
+                "summary": "Add a new lecture",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Lecture"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Lecture created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Lecture"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/lectures?id={id}": {
+            "get": {
+                "tags": [
+                    "Lectures"
+                ],
+                "summary": "Get a lecture by ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of a lecture",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Lecture"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Lecture not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Lectures"
+                ],
+                "summary": "Get a lecture by ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Lecture"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Details of a lecture",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Lecture"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Lecture not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Lectures"
+                ],
+                "summary": "Delete a lecture by ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lecture deleted"
+                    },
+                    "404": {
+                        "description": "Lecture not found"
+                    }
+                }
+            }
+        },
+        "/temy?pracovisko={pracovisko}": {
+            "get": {
+                "tags": [
+                    "Temy"
+                ],
+                "summary": "Get all thesis by department",
+                "parameters": [
+                    {
+                        "name": "pracovisko",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all thesis by department",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Tema"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No thesis found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Lecture": {
+                "type": "object",
+                "required": [
+                    "den",
+                    "cas_od",
+                    "cas_do",
+                    "typ_akcie",
+                    "nazov_predmetu",
+                    "miestnost",
+                    "vyucujuci"
+                ],
+                "properties": {
+                    "den": {
+                        "type": "string",
+                        "example": "Pondelok"
+                    },
+                    "cas_od": {
+                        "type": "string",
+                        "pattern": "^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$",
+                        "example": "14:00:00"
+                    },
+                    "cas_do": {
+                        "type": "string",
+                        "pattern": "^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$",
+                        "example": "15:50:00"
+                    },
+                    "typ_akcie": {
+                        "type": "string",
+                        "example": "prednáška"
+                    },
+                    "nazov_predmetu": {
+                        "type": "string"
+                    },
+                    "miestnost": {
+                        "type": "string"
+                    },
+                    "vyucujuci": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Tema": {
+                "type": "object",
+                "properties": {
+                    "Typ": {
+                        "type": "string",
+                        "description": "The type of the work, e.g., Bachelor's thesis, Master's thesis etc."
+                    },
+                    "NazovTemy": {
+                        "type": "string",
+                        "description": "The title of the thesis topic."
+                    },
+                    "VeduciPrace": {
+                        "type": "string",
+                        "description": "The supervisor of the thesis."
+                    },
+                    "Pracovisko": {
+                        "type": "string",
+                        "description": "The department or workplace associated with the thesis."
+                    },
+                    "Program": {
+                        "type": "string",
+                        "description": "The study program code."
+                    },
+                    "Zameranie": {
+                        "type": "string",
+                        "description": "The specialization or focus of the study program."
+                    },
+                    "Abstrakt": {
+                        "type": "string",
+                        "description": "An abstract of the thesis topic describing the goals and tasks."
+                    }
+                },
+                "required": [
+                    "Typ",
+                    "NazovTemy",
+                    "VeduciPrace",
+                    "Pracovisko",
+                    "Program",
+                    "Abstrakt"
+                ]
+            }
+        }
+    }
+}
