@@ -65,7 +65,7 @@ services:
         image: phpmyadmin/phpmyadmin:5
         environment:
             - PMA_HOST=mysql
-            - PMA_PORT=3306
+            - PMA_PORT=4306
         networks:
             - laravel
         ports:
